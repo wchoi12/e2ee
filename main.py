@@ -20,27 +20,6 @@ class Person():
         self.received_message = text
         return self.received_message
 
-#Initialization
-alice = Person("Alice")
-bob = Person("Bob")
-
-alice.whoami()
-bob.whoami()
-
-#testing with print statements
-alice.writeMessage("Hi Bob")
-print(alice.sent_message)
-bob.receivedMessage(alice.sent_message)
-print(bob.received_message)
-
-bob.writeMessage("Hi Alice")
-alice.receivedMessage(bob.sent_message)
-print(alice.received_message)
-
-alice.writeMessage("How's your day going?")
-bob.receivedMessage(alice.sent_message)
-print(alice.sent_message)
-print(bob.received_message)
 
 #functions to implement RSA
 # Step 1: Generate large prime numbers (p, q)
@@ -108,17 +87,25 @@ def decrypt(private_key, ciphertext):
 keysize = 1024
 public_key, private_key = generate_keypair(keysize)
 
+
+
+#Simulation of End-to-End Encryption
+alice = Person("Alice")
+bob = Person("Bob")
+
+#testing with print statements
+alice.writeMessage("Hi Bob")
 message = alice.sent_message
 print("Original Message:", message)
 
+print(f"\n")
+
 # Encrypt the message
 ciphertext = encrypt(public_key, message)
-print("Ciphertext:", ciphertext)
+print(f"Ciphertext: {ciphertext} \nwith public key: {public_key}")
+
+print(f"\n")
 
 # Decrypt the message
 decrypted_message = decrypt(private_key, ciphertext)
-print("Decrypted Message:", decrypted_message)
-
-
-
-
+print(f"Decrypted Message: {decrypted_message} \nwith private key: {private_key}")
